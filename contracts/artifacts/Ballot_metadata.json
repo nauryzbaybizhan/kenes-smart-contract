@@ -1,0 +1,205 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "chairperson",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "name",
+						"type": "bytes32"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "name",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Ballot.Proposal[]",
+						"name": "proposals",
+						"type": "tuple[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "modules",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exponent",
+						"type": "uint256"
+					}
+				],
+				"name": "createElection",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "elections",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "name",
+						"type": "bytes32"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "modulus",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "exponent",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Ballot.RSAPublicKey",
+						"name": "publicKey",
+						"type": "tuple"
+					},
+					{
+						"internalType": "bool",
+						"name": "created",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "electionName",
+						"type": "bytes32"
+					}
+				],
+				"name": "getPKey",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "signedBallot",
+						"type": "string"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implements voting process along with vote delegation",
+			"kind": "dev",
+			"methods": {
+				"getPKey(bytes32)": {
+					"details": "returns modulus and exponent of RSAPublicKey",
+					"params": {
+						"electionName": "is the name of election"
+					}
+				},
+				"vote(string)": {
+					"details": "validate and store vote",
+					"params": {
+						"signedBallot": "base64 encoded json representation of signed ballot"
+					}
+				}
+			},
+			"title": "Ballot",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/3_Ballot.sol": "Ballot"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"base64-sol/base64.sol": {
+			"keccak256": "0xa73959e6ef0b693e4423a562e612370160b934a75e618361ddd8c9c4b8ddbaaf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://17c12e16d8d66f3af15d8787920bd41ca6c1e7517a212a6b9cebd4b6d38f36fe",
+				"dweb:/ipfs/QmcXMnZUXEz6LRKsm3CSvqdPboAzmezavi8bTg2dRxM2yE"
+			]
+		},
+		"contracts/3_Ballot.sol": {
+			"keccak256": "0x2b63e3ab52cb78242a2eeaa3863956d7e5d7e2f326b0c57f1500db5d8ded3f03",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4132fe9ca3a4aa073c635db3f0d0f7b8379a1f3b5182e0d9ec4c612f5f9570de",
+				"dweb:/ipfs/Qma9RDKRFKn6ztvkiA5eCXFGTxE6qmN3GRvvtUsDivUXPp"
+			]
+		}
+	},
+	"version": 1
+}

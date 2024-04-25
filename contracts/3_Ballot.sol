@@ -35,23 +35,40 @@ contract Ballot {
         chairperson = msg.sender;
     }
 
-    function startElection(bytes32 name, Proposal[] calldata proposals, uint modules, uint exponent) public {
+    function createElection(bytes32 name, Proposal[] calldata proposals, uint modules, uint exponent) public {
         require(msg.sender == chairperson, "Has no right to create election");
         require(name != "", "Name must be specified");
         require(!elections[name].created, "Election already created");
 
-        RSAPublicKey memory pKey = RSAPublicKey(modules, exponent);
-        Election memory election = Election(name, proposals, pKey, true);
-        elections[name] = election;
+        for (uint i = 0; i < proposals.length; i++) {
+            elections[name].proposals.push(proposals[i]);
+        }
+        elections[name].name = name;
+        elections[name].publicKey = RSAPublicKey(modules, exponent);
+        elections[name].created = true;
     }
 
     /**
      * @dev validate and store vote
-     * @param signedBallot bas64 encoded json representation of signed ballot
+     * @param signedBallot base64 encoded json representation of signed ballot
      */
     function vote(string calldata signedBallot) public {
         //bas64 decode
         bytes memory decode = Base64.decode(signedBallot);
+        //read json
+        //decrypt sign with pkey
+        //hash payload
+        //compare hashes
+    }
+
+    /**
+     * @dev returns modulus and exponent of RSAPublicKey
+     * @param electionName is the name of election
+     */
+    function getPKey(bytes32 electionName) view public returns(uint, uint) {
+        uint modulus = elections[electionName].publicKey.modulus;
+        uint exponent = elections[electionName].publicKey.exponent;
+        return (modulus, exponent);
     }
 
 }
